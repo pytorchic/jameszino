@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getDatabase, ref, set } from "firebase/database";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -23,5 +24,8 @@ const analytics = getAnalytics(app);
 
 // getting the text value from the database
 var bigOne = document.getElementById('bigOne');
-var dbRef = firebase.database().ref().child('helloworld');
-dbRef.on('value', snap => bigOne.innerText = snap.val());
+
+const db = getDatabase();
+  set(ref(db, 'users/james'), {
+    birthday: "12/14/1997",
+  });
